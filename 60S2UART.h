@@ -18,13 +18,13 @@ typedef unsigned int WORD;
 
 
 /*Uart1's functions*/
-void InitUart1();
+void InitUart1(unsigned int);
 void OpenUart1();
 void SendDataFromUart1(BYTE dat);
 void SendStringFromUart1(char *s);
 
 /*Uart2's functions*/
-void InitUart2();
+void InitUart2(unsigned int);
 void OpenUart2();
 void SendDataFromUart2(BYTE dat);
 void SendStringFromUart2(char *s);

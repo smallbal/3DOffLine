@@ -11,7 +11,7 @@ char RecieveCharInUart2; //Uart2接收的字节存在这里
 static bit busy;
 bit RecieveCharFlag2;
 
-void InitUart2()
+void InitUart2(unsigned int baud)
 {
 #if (PARITYBIT == NONE_PARITY)
 	S2CON = 0x5a;               //8位可变波特率 (无校验位)
@@ -20,7 +20,8 @@ void InitUart2()
 #elif (PARITYBIT == SPACE_PARITY)
 	S2CON = 0xd5;               //9位可变波特率,校验位初始为0
 #endif
-	BRT = -(FOSC/32/BAUD);      //设置独立波特率发生器的重载初值
+	//BRT = -(FOSC/32/BAUD);      //设置独立波特率发生器的重载初值
+    BRT = -(FOSC/32/baud);      //设置独立波特率发生器的重载初值
 	AUXR = 0x14;                //独立波特率发生器工作在1T模式
 	//IE2 = 0x01;                 //使能串口2中断
 	//EA = 1;                     //开总中断

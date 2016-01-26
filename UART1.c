@@ -11,7 +11,7 @@ InitUart1()：初始化串口，在函数开始时初始化一下就行，
 别的地方不需要加任何东西，初始化后串口没有打开，
 打开串口功能我另外写了一个函数
 **************************************************************/
-void InitUart1()
+void InitUart1(unsigned int baud)
 {
 #if(PARITYBIT == NONE_PARITY)
     SCON = 0x50;    //8-bit variable UAET
@@ -22,7 +22,8 @@ void InitUart1()
 #endif
     
     TMOD = 0x20;    //Set Timer1 as 8-bit auto reload mode
-    TH1 = -(FOSC/12/32/BAUD);   //Set auto-reload vaule
+    //TH1 = -(FOSC/12/32/BAUD);   //Set auto-reload vaule
+    TH1 = -(FOSC/12/32/baud);   //Set auto-reload value
     TL1 = TH1;
     TR1 = 1;
 }
